@@ -14,7 +14,21 @@ $(document).ready(function () {
             this.correctGuesses = 0;
             this.wrongGuesses = 0;
             this.questionCounter = 0;
+            this.currentQuestionIndex = 0;
+            this.setGameTime();
+            $("#question").html(this.questions[this.currentQuestionIndex].questionText);
+            $("#answers").html(this.questions[this.currentQuestionIndex].displayAnswersHTML);
 
+        },
+
+        //This timer ends the game when time is up.
+
+        setGameTime: function () {
+            setTimeout(this.endGame, 8000);
+        },
+
+        questionTimeout: function() {
+            setTimeout(this.nextQuestion, 3000);
         },
 
         guessCounter: function (wasCorrect) {
@@ -31,17 +45,22 @@ $(document).ready(function () {
             $("#question").empty();
 
             //Check if all questions have been asked.
-            if (this.currentQuestionIndex < this.questions.length - 1) {
+            if (game.currentQuestionIndex <= game.questions.length - 1) {
                 game.currentQuestionIndex++;
-                $("#question").html(this.questions[this.currentQuestionIndex].questionText);
-                $("#answers").html(this.questions[this.currentQuestionIndex].displayAnswersHTML);
+                $("#question").html(game.questions[game.currentQuestionIndex].questionText);
+                $("#answers").html(game.questions[game.currentQuestionIndex].displayAnswersHTML);
+                game.questionTimeout();
             } else {
-                this.endGame();
+                game.endGame();
             }
         },
 
         endGame: function () {
-            $("#answers").html("End game");
+            $("#answers").empty();
+            $("#question").empty();
+            var finalCountHTML = "<p>Correct: " + game.correctGuesses + "</p><p>Incorrect: " + game.wrongGuesses + "</p>";
+            $("#answers").html(finalCountHTML);
+
         }
 
 
@@ -57,13 +76,17 @@ $(document).ready(function () {
 
         //Display the possible answers.
         this.displayAnswersHTML = function () {
-            return "<button class='answer' id='answer0' value='0'> " + answers[0] + "<br><button class='answer' id='answer1' value='1'> " + answers[1] + "<br><button class='answer' id='answer2' value='2'> " + answers[2] + "<br><button class='answer' id='answer3' value='3'> " + answers[3];
+            return "<button class='answer' id='answer0' value='0'> " + answers[0] + "</button></p><p><button class='answer' id='answer1' value='1'> " + answers[1] + "</button></p><p><button class='answer' id='answer2' value='2'> " + answers[2] + "</button></p><p><button class='answer' id='answer3' value='3'> " + answers[3];
         }
     }
 
+    //Create the question objects
     var question1 = new question('Am I a question?', ['maybe', 'probably', 'probably not', 'no'], 1);
     var question2 = new question('Or am I a question?', ['to be', 'or not', 'to be', 'a question'], 3);
-    $("#question").html(game.questions[game.currentQuestionIndex].displayAnswersHTML);
+    var question3 = new question('Or am I a questionssss?', ['to besss', 'or notsss', 'to bess', 'a questionsss'], 3);
+
+    // $("#question").html(game.questions[game.currentQuestionIndex].displayAnswersHTML);
+    game.startRound();
 
     $('div').on('click', '.answer', function () {
         console.log($(this).val());
