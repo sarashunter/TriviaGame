@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 
         questionTimeout: function () {
-            this.answerTime = setTimeout(this.timeRanOut, 5000);
+            this.answerTime = setTimeout(this.timeRanOut, 10000);
         },
 
         timeRanOut: function () {
@@ -42,7 +42,7 @@ $(document).ready(function () {
         guessCounter: function (wasCorrect) {
             if (wasCorrect) {
                 this.correctGuesses++;
-                $("#instructions").html('<h3>Correct</h3><iframe src="https://giphy.com/embed/DvbEI4LAFaZaw" width="400" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>');
+                $("#instructions").html('<h3>Correct</h3><iframe src="https://giphy.com/embed/DvbEI4LAFaZaw" width="40git0" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>');
                 $("#question").empty();
                 $("#answers").empty();
                 setTimeout(
