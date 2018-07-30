@@ -1,8 +1,6 @@
 $(document).ready(function () {
 
     var game = {
-        wins: 0,
-        losses: 0,
         correctGuesses: 0,
         wrongGuesses: 0,
         questions: [],
@@ -15,20 +13,13 @@ $(document).ready(function () {
             this.wrongGuesses = 0;
             this.questionCounter = 0;
             this.currentQuestionIndex = 0;
-            // this.setGameTime();
+            game.currentQuestion=game.questions[game.currentQuestionIndex];
             $("#question").html(this.questions[this.currentQuestionIndex].questionText);
             $("#answers").html(this.questions[this.currentQuestionIndex].displayAnswersHTML);
+            game.questionTimeout();
 
         },
 
-        //This timer ends the game when time is up.
-
-        // setGameTime: function () {
-        //     setTimeout(function(){
-        //         this.endGame;
-        //         $("#instructions").html("<h2>Time's Up</h2>");
-        //     }, 8000);
-        // },
 
         questionTimeout: function () {
             this.answerTime = setTimeout(this.timeRanOut, 5000);
@@ -38,12 +29,12 @@ $(document).ready(function () {
             $("#instructions").html("<h2>Time's Up</h2>");
             $("#answers").empty();
             $("#question").empty();
+            game.wrongGuesses++;
 
             setTimeout(
                 function () {
                     $("#instructions").empty();
                     this.currentQuestionIndex++;
-                    game.wrongGuesses++;
                     game.nextQuestion();
 
                 }, 5000);
@@ -51,14 +42,14 @@ $(document).ready(function () {
         guessCounter: function (wasCorrect) {
             if (wasCorrect) {
                 this.correctGuesses++;
-                $("#instructions").html("Good job");
+                $("#instructions").html("<h3>Correct</h3>Good job");
                 $("#question").empty();
                 $("#answers").empty();
                 setTimeout(
                     this.nextQuestion, 3000);
             } else {
                 this.wrongGuesses++;
-                $("#instructions").html("Bad job");
+                $("#instructions").html("<h3>Incorrect</h3> The correct answer was " + game.currentQuestion.answers[game.currentQuestion.indexAnswer] );
                 $("#question").empty();
                 $("#answers").empty();
                 setTimeout(
@@ -76,6 +67,7 @@ $(document).ready(function () {
             if (game.currentQuestionIndex < game.questions.length - 1) {
 
                 game.currentQuestionIndex++;
+                game.currentQuestion=game.questions[game.currentQuestionIndex];
                 $("#question").html(game.questions[game.currentQuestionIndex].questionText);
                 $("#answers").html(game.questions[game.currentQuestionIndex].displayAnswersHTML);
                 game.questionTimeout();
@@ -98,14 +90,14 @@ $(document).ready(function () {
     function question(question, answers, indexAnswer) {
         this.asked = false;
         this.indexAnswer = indexAnswer;
-        this.questionText = question;
+        this.questionText = "<p>"+question+"</p>";
         this.answers = answers;
         game.questions.push(this);
         console.log(game.questions);
 
         //Display the possible answers.
         this.displayAnswersHTML = function () {
-            return "<button class='answer' id='answer0' value='0'> " + answers[0] + "</button></p><p><button class='answer' id='answer1' value='1'> " + answers[1] + "</button></p><p><button class='answer' id='answer2' value='2'> " + answers[2] + "</button></p><p><button class='answer' id='answer3' value='3'> " + answers[3];
+            return "<button class='answer btn btn-light' id='answer0' value='0'> " + answers[0] + "</button></p><p><button class='answer btn btn-light' id='answer1' value='1'> " + answers[1] + "</button></p><p><button class='answer btn btn-light' id='answer2' value='2'> " + answers[2] + "</button></p><p><button class='answer btn btn-light' id='answer3' value='3'> " + answers[3];
         }
     }
 
@@ -150,17 +142,5 @@ $(document).ready(function () {
             game.guessCounter(false);
         }
     })
-
-    //Pseudo coding:
-    //Need object for game (so it can restart).
-    //needs to do the timer stuff
-    //Number wrong and right
-    //Need game initialize function.  next question function
-
-    //Need object for each question?
-    //string Question
-    //Array answers
-    //number indexof correct answer
-    //boolean of if it's been asked
 
 })

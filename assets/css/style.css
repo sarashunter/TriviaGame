@@ -1,0 +1,20 @@
+body{
+    background-color: #cccccc;
+}
+.container{
+    /* background:url("../images/pinstripe.jpg"); */
+}
+h1{
+    color:#C8102E;
+    background-color:#002F6C;
+}
+#maincontent{
+    background-color: #ffffff;
+}
+#header{
+    background:url("../images/pinstripe.jpg");
+
+}
+.answer{
+    width:90%;
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--Import Javascript file-->
     <script src="assets/javascript/app.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
+
 <body>
-    <h1>Trivia</h1>
-    <div id="instructions"></div>
-    <div id="question"></div>
-    <div id="answers"></div>
+    <div class="container col-md-6">
+        <div id="header" class="text-center">
+            <img src="assets/images/cublogo.png">
+        </div>
+            <h1 class="display-4 text-center">Chicago Cubs Trivia</h1>
+        <div id="maincontent">
+        <div id="instructions"></div>
+        <div id="question" class="m-2"></div>
+        <div id="answers" class="text-center"></div>
+    </div>
+    </div>
 </body>
+
 </html>
