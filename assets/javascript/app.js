@@ -42,7 +42,7 @@ $(document).ready(function () {
         guessCounter: function (wasCorrect) {
             if (wasCorrect) {
                 this.correctGuesses++;
-                $("#instructions").html('<h3>Correct</h3><iframe src="https://giphy.com/embed/DvbEI4LAFaZaw" width="40git0" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>');
+                $("#instructions").html('<h3>Correct</h3><iframe src="https://giphy.com/embed/DvbEI4LAFaZaw" width="400" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>');
                 $("#question").empty();
                 $("#answers").empty();
                 setTimeout(
@@ -80,7 +80,8 @@ $(document).ready(function () {
             $("#answers").empty();
             $("#question").empty();
             var finalCountHTML = "<p>Correct: " + game.correctGuesses + "</p><p>Incorrect: " + game.wrongGuesses + "</p>";
-            $("#answers").html(finalCountHTML);
+            var restartButtonHTML = "<p><button class='btn btn-light btn-restart'>Restart Game</button></p>";
+            $("#answers").html(finalCountHTML + restartButtonHTML);
 
         }
 
@@ -124,7 +125,7 @@ $(document).ready(function () {
     // $("#question").html(game.questions[game.currentQuestionIndex].displayAnswersHTML);
     game.startRound();
 
-    $('div').on('click', '.answer', function () {
+    $('#answers').on('click', '.answer', function () {
         console.log($(this).val());
         console.log("index answer " + game.questions[game.currentQuestionIndex].indexAnswer);
         clearTimeout(game.answerTime);
@@ -141,6 +142,9 @@ $(document).ready(function () {
             console.log("Not correct!");
             game.guessCounter(false);
         }
+    })
+    $('#answers').on('click', '.btn-restart', function () {
+        game.startRound();
     })
 
 })
