@@ -26,7 +26,7 @@ $(document).ready(function () {
         },
 
         timeRanOut: function () {
-            $("#instructions").html("<h2>Time's Up</h2>");
+            $("#instructions").html('<h3>Time is Up</h3> <iframe src="https://giphy.com/embed/JyKLhxwBo6WNa" width="400" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p>The correct answer was ' + game.currentQuestion.answers[game.currentQuestion.indexAnswer] + "</p>");
             $("#answers").empty();
             $("#question").empty();
             game.wrongGuesses++;
@@ -42,14 +42,14 @@ $(document).ready(function () {
         guessCounter: function (wasCorrect) {
             if (wasCorrect) {
                 this.correctGuesses++;
-                $("#instructions").html("<h3>Correct</h3>Good job");
+                $("#instructions").html('<h3>Correct</h3><iframe src="https://giphy.com/embed/DvbEI4LAFaZaw" width="400" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>');
                 $("#question").empty();
                 $("#answers").empty();
                 setTimeout(
                     this.nextQuestion, 3000);
             } else {
                 this.wrongGuesses++;
-                $("#instructions").html("<h3>Incorrect</h3> The correct answer was " + game.currentQuestion.answers[game.currentQuestion.indexAnswer] );
+                $("#instructions").html('<h3>Incorrect</h3> <iframe src="https://giphy.com/embed/3o7TKAwfiJfUW85bKo" width="400" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p>The correct answer was ' + game.currentQuestion.answers[game.currentQuestion.indexAnswer] + "</p>" );
                 $("#question").empty();
                 $("#answers").empty();
                 setTimeout(

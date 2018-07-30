@@ -1,5 +1,6 @@
 body{
     background-color: #cccccc;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .container{
     /* background:url("../images/pinstripe.jpg"); */
@@ -10,6 +11,10 @@ h1{
 }
 #maincontent{
     background-color: #ffffff;
+    padding:2px;
+}
+#instructions{
+    padding:2px;
 }
 #header{
     background:url("../images/pinstripe.jpg");
